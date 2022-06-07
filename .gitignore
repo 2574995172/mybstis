@@ -1,0 +1,4 @@
+# Project exclude paths
+/mapper代理/target/
+/mybatis2/target/
+/target/

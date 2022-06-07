@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.EmpMapper">
+    <resultMap id="map" type="Emp">
+        <id property="empno1" column="empno"></id>
+        <result property="ename1" column="ename"></result>
+    </resultMap>
+    <select id="getEmpById" parameterType="int" resultType="Emp">
+        select * from user where empno = #{empno}
+    </select>
+    <delete id="deleteEmpById" parameterType="int">
+        delete from user where empno = #{empno}
+    </delete>
+    <insert id="insertEmp" parameterType="Emp">
+        insert into user(ename,job,hiredate,sal,deptno) value(#{ename},#{job},#{hiredate},#{sal},#{deptno})
+    </insert>
+    <update id="updateEmpById" parameterType="Emp">
+        update user set ename=#{ename},job=#{job},hiredate=#{hiredate},sal=#{sal},deptno=#{deptno} where empno=#{empno}
+    </update>
+    <select id="getAllEmp" resultType="com.jopo.Emp" parameterType="Emp">
+        select * from user
+    </select>
+    <delete id="deleteEmpByIdList">
+        delete from user where empno in
+        <foreach collection="list" item="id" open="(" close=")"  separator="," index="index">
+            #{id}
+        </foreach>
+    </delete>
+    <select id="getEmpByEnameAndJob" parameterType="map" resultType="Emp">
+        select * from user where ename=#{ename} and job=#{job};
+    </select>
+    <select id="getCount" resultType="map">
+        select max(sal) maxWages,min(sal) minWages,sum(sal) sumWages,avg(sal) avgWages from user;
+    </select>
+</mapper>
