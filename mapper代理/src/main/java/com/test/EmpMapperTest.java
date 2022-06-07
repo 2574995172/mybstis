@@ -91,6 +91,5 @@ public class EmpMapperTest {
 
         sqlSession.commit();
         sqlSession.close();
-        System.out.println("66");
     }
 }
